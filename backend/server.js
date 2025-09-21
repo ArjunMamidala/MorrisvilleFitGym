@@ -11,7 +11,7 @@ const app = express();
 app.use(cors()); //Enable Cross-Origin Resource Sharing
 
 //API to listen to Clerk Webhookds
-app.post("/api/clerk/webhooks", express.raw({ type: 'application/json' }), clerkWebhooks);
+app.post("/api/clerk/webhooks", clerkWebhooks);
 
 // Middleware
 app.use(express.json());
