@@ -10,12 +10,12 @@ connectDB()
 const app = express();
 app.use(cors()); //Enable Cross-Origin Resource Sharing
 
-//API to listen to Clerk Webhookds
-app.post("/api/clerk/webhooks", clerkWebhooks);
-
 // Middleware
 app.use(express.json());
 app.use(clerkMiddleware());
+
+//API to listen to Clerk Webhookds
+app.post("/api/clerk/webhooks", clerkWebhooks);
 
 app.get('/', (req, res) => {
     res.send("API is working");
