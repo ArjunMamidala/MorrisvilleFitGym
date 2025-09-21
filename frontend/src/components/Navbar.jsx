@@ -10,7 +10,6 @@ const links = [
   { name: "Classes", path: "/classes" },
   { name: "Memberships", path: "/memberships" },
   { name: "Trainers", path: "/trainers" },
-  { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
 ];
 
