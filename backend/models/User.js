@@ -2,11 +2,13 @@ import mongoose from "mongoose";
 
 //Define the user schema
 const userSchema = mongoose.Schema({
+    _id: { type: String, required: true }, 
     username: {type: String, required: true},
     email: {type: String, required: true},
     image: {type: String, required: true},
     role: {type: String, enum: ["user", "gymowner"], default: "user"},
-}, {timestamps: true}
+}, {
+    timestamps: true,}
 );
 
 //Create and export the model
