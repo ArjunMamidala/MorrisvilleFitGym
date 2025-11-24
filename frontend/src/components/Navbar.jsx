@@ -7,6 +7,7 @@ import { useClerk, useUser, UserButton } from "@clerk/clerk-react";
 
 const links = [
   { name: "Home", path: "/" },
+  {name: "Dashboard", path: "/dashboard"},
   { name: "Classes", path: "/classes" },
   { name: "Memberships", path: "/memberships" },
   { name: "Trainers", path: "/trainers" },
@@ -66,11 +67,13 @@ export default function Navbar() {
                 isScrolled ? "opacity-90" : ""
               }`}
             />
-            <span className="hidden sm:inline">Morrisville Town</span>
+            <span className="hidden sm:inline">AI-Powered Fitness</span>
           </Link>
 
           {/* Middle: Desktop links */}
-          <ul className="hidden md:flex items-center gap-8 text-white">
+          <ul className={`hidden md:flex items-center gap-8 transition-colors ${
+            isScrolled ? "text-white/90" : "text-white"
+        }`}>
             {links.map((l) => (
               <li key={l.path}>
                 <NavLink

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -17,16 +18,26 @@ const Contact = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-
-    // You can send this data to your backend or email service
-    alert('Message sent successfully!');
+    try {
+      const response = await axios.post("http://localhost:3105/api/email/send", formData);
+      if (response.data.success) {
+        alert("Message sent successfully!");
+        setFormData({ name: '', email: '', message: '' });
+      }
+      else {
+        alert("There was an issue sending your message. Please try again later.");
+      }
+    }
+    catch (error) {
+      console.error("Error sending message: ", error);
+      alert("There was an error sending your message. Please try again later.");
+    }
   };
 
   return (
-    <div className="contact-page">
+    <div className="contact-page bg-gray-100">
       {/* Contact form section */}
       <section className="contact-form max-w-4xl mx-auto px-4 py-16">
         <h2 className="text-4xl font-extrabold text-gray-800 mb-8 text-center">Contact Us</h2>
@@ -92,7 +103,7 @@ const Contact = () => {
             <strong>Phone:</strong> +1 234 567 890
           </p>
           <p className="text-lg text-gray-600">
-            <strong>Email:</strong> contact@morrisvillefit.com
+            <strong>Email:</strong> morrisvillefitness123@gmail.com
           </p>
           <p className="text-lg text-gray-600">
             <strong>Address:</strong> 123 Fitness St, Morrisville, NC 12345

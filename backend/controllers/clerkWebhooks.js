@@ -2,6 +2,7 @@ import User from "../models/User.js";
 import { Webhook } from "svix";
 
 const clerkWebhooks = async (req, res) => {
+    console.log("🔥 WEBHOOK CALLED! 🔥");
     try {
         // Re-enable signature verification for security
         const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET);
@@ -23,6 +24,7 @@ const clerkWebhooks = async (req, res) => {
             email: data.email_addresses?.[0]?.email_address || 'no-email@example.com',
             username: `${data.first_name || ''} ${data.last_name || ''}`.trim() || 'Unknown User',
             image: data.image_url || '', 
+            role: 'user'
         };
 
         switch (type) {
@@ -32,7 +34,7 @@ const clerkWebhooks = async (req, res) => {
                 console.log("User created in database:", createdUser);
                 
                 // Test if we can find the user immediately after creation
-                const testUser = await User.findOne({ _id: data.id });
+                const testUser = await User.findById(data.id);
                 console.log("Found user in database:", testUser);
                 break;
             }

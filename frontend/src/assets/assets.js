@@ -8,6 +8,7 @@ import cardio from "./cardio.jpg"
 import indoorcycling from "./indoorcycling.jpg"
 import strengthtraining from "./strengthtraining.avif"
 import zumba from "./zumba.webp"
+import nicegym from "./nicegymlightingpic.jpg"
 
 const assets = {
     MorrisvilleTownFitnessCenter,
@@ -19,7 +20,8 @@ const assets = {
     cardio, 
     indoorcycling, 
     strengthtraining, 
-    zumba
+    zumba, 
+    nicegym
 };
 
 export default assets;
